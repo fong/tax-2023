@@ -225,12 +225,6 @@
 </div>
 
 <style>
-	:global(body) {
-		margin: 0;
-		font-family: 'Source Sans 3', sans-serif;
-		padding: 16px;
-	}
-
 	.graph {
 		position: relative;
 		width: auto;
