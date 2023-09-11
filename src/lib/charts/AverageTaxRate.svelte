@@ -13,7 +13,7 @@
 		bracketsTOP
 	} from '../../utils/generateData';
 
-    export let labels;
+	export let labels;
 	export let min = 0;
 	export let max = 301;
 	export let labelLower = 0;
@@ -34,26 +34,20 @@
 		new Array(max - min).fill(0).map((_, i) => calculateTaxPercent(i * 1000, bracketsTOP))
 	];
 
-    $: {
-            if (chart) {
-                chart.data.labels = labels.slice(labelLower, labelUpper + 1);
-                chart.data.datasets.forEach((dataset, i) => {
-                    dataset.data = precalc[i].slice(labelLower, labelUpper + 1);
-                });
-                chart.options.scales.x.min = labelLower * 1000;
-                chart.options.scales.x.max = labelUpper * 1000;
-                chart.options.plugins.title.text = `    Average Tax Rate (${(labelLower * 1000).toLocaleString('en-NZ', {
-                                                        style: 'currency',
-                                                        currency: 'NZD',
-                                                        maximumFractionDigits: 0
-                                                    })} - ${(labelUpper * 1000).toLocaleString('en-NZ', {
-                                                        style: 'currency',
-                                                        currency: 'NZD',
-                                                        maximumFractionDigits: 0
-                                                    })})`
-                chart.update();
-            }
-        }
+	$: {
+		if (chart) {
+			chart.data.labels = labels.slice(labelLower, labelUpper + 1);
+			chart.data.datasets.forEach((dataset, i) => {
+				dataset.data = precalc[i].slice(labelLower, labelUpper + 1);
+			});
+			chart.options.scales.x.min = labelLower * 1000;
+			chart.options.scales.x.max = labelUpper * 1000;
+			chart.options.plugins.title.text = `    Average Tax Rate (${(
+				labelLower * 1000
+			).toCurrency()} - ${(labelUpper * 1000).toCurrency()})`;
+			chart.update();
+		}
+	}
 
 	onMount(async (promise) => {
 		var ctx = document.getElementById('average-tax-rate');
@@ -150,11 +144,7 @@
 						ticks: {
 							stepSize: 20000,
 							callback: function (x) {
-								return `${x.toLocaleString('en-NZ', {
-									style: 'currency',
-									currency: 'NZD',
-									maximumFractionDigits: 0
-								})}`;
+								return `${x.toCurrency()}`;
 							}
 						},
 						min: labelLower * 1000,
@@ -164,15 +154,9 @@
 				plugins: {
 					title: {
 						display: true,
-						text: `    Average Tax Rate (${(labelLower * 1000).toLocaleString('en-NZ', {
-                                    style: 'currency',
-                                    currency: 'NZD',
-                                    maximumFractionDigits: 0
-                                })} - ${(labelUpper * 1000).toLocaleString('en-NZ', {
-                                    style: 'currency',
-                                    currency: 'NZD',
-                                    maximumFractionDigits: 0
-                                })})`,
+						text: `    Average Tax Rate (${(labelLower * 1000).toCurrency()} - ${(
+							labelUpper * 1000
+						).toCurrency()})`,
 						align: 'start',
 						font: {
 							size: 24,
@@ -214,23 +198,13 @@
 			]
 		});
 	});
-
-
 </script>
 
-<div class="graph">
+<div class="relative w-auto h-[384px] md:h-[520px] margin-6">
 	<canvas bind:this={chart} id="average-tax-rate" />
 </div>
 
-
 <style>
-	.graph {
-		position: relative;
-		width: auto;
-		height: 520px;
-		margin: 24px;
-	}
-
 	canvas {
 		background-color: #fff;
 	}

@@ -14,10 +14,11 @@
 	} from '../../utils/generateData';
 
 	export let labels;
-	export let min = 0;
-	export let max = 301;
-	export let labelLower = 0;
-	export let labelUpper = 301;
+	let min = 0;
+	let max = 300;
+	export let labelLower;
+	export let labelUpper;
+	export let width;
 	let chart;
 
 	const precalc = [
@@ -32,22 +33,22 @@
 	];
 
 	$: {
-		if (chart) {
-			chart.data.labels = labels.slice(labelLower, labelUpper + 1);
-			chart.data.datasets.forEach((dataset, i) => {
-				dataset.data = precalc[i].slice(labelLower, labelUpper + 1);
-			});
-			chart.options.scales.x.min = labelLower * 1000;
-			chart.options.scales.x.max = labelUpper * 1000;
-			chart.options.plugins.title.text = `    Income Tax (${(labelLower * 1000).toCurrency()} - ${(
-				labelUpper * 1000
-			).toCurrency()})`;
-			chart.update();
-		}
+		// if (chart) {
+		// 	chart.data.labels = labels.slice(labelLower, labelUpper + 1);
+		// 	chart.data.datasets.forEach((dataset, i) => {
+		// 		dataset.data = precalc[i].slice(labelLower, labelUpper + 1);
+		// 	});
+		// 	chart.options.scales.x.min = labelLower * 1000;
+		// 	chart.options.scales.x.max = labelUpper * 1000;
+		// 	chart.options.plugins.title.text = `    Income Tax (${(labelLower * 1000).toCurrency()} - ${(
+		// 		labelUpper * 1000
+		// 	).toCurrency()})`;
+		// 	chart.update();
+		// }
 	}
 
 	onMount(async (promise) => {
-		var ctx = document.getElementById('income-tax');
+		var ctx = document.getElementById('pop-dist');
 		var data = {
 			labels: labels,
 			yAxes: {},
@@ -102,6 +103,9 @@
 			data: data,
 			options: {
 				maintainAspectRatio: false,
+				layout: {
+					padding: 24
+				},
 				elements: {
 					point: {
 						pointStyle: false
@@ -112,78 +116,34 @@
 				},
 				scales: {
 					y: {
-						title: {
-							display: true,
-							text: 'Income Tax',
-							font: {
-								size: 20,
-								family: "'Source Sans 3', sans-serif",
-								lineHeight: 1.4
-							}
-						},
 						ticks: {
-							callback: function (x) {
-								return `${x.toCurrency()}`;
-							}
+							display: false
 						}
 					},
 					x: {
 						type: 'linear',
-						title: {
-							display: true,
-							text: 'Taxable Income',
-							font: {
-								size: 20,
-								family: "'Source Sans 3', sans-serif",
-								lineHeight: 1.4
-							}
-						},
 						ticks: {
+							display: true,
 							stepSize: 20000,
 							callback: function (x) {
 								return `${x.toCurrency()}`;
-							}
+							},
+							maxRotation: 30,
+							minRotation: 30
 						},
-						min: labelLower * 1000,
-						max: labelUpper * 1000
+						min: min * 1000,
+						max: max * 1000
 					}
 				},
 				plugins: {
-					title: {
-						display: true,
-						text: `    Income Tax (${(labelLower * 1000).toCurrency()} - ${(
-							labelUpper * 1000
-						).toCurrency()})`,
-						align: 'start',
-						font: {
-							size: 24,
-							weight: 'normal',
-							family: "'Source Sans 3', sans-serif"
-						}
-					},
 					legend: {
-						align: 'start',
-						labels: {
-							padding: 20,
-							usePointStyle: true,
-							pointStyle: 'circle'
-						}
+						display: false
 					}
 				}
 			},
 			plugins: [
 				{
 					beforeInit: function (chart) {
-						// var data = chart.config.data;
-						// for (var i = 0; i < data.datasets.length; i++) {
-						// 	for (var j = 0; j < data.labels.length; j++) {
-						// 		var fct = data.datasets[i].function,
-						// 			x = data.labels[j],
-						// 			y = fct(x);
-						// 		data.datasets[i].data.push(y);
-						// 	}
-						// }
-
 						const originalFit = chart.legend.fit;
 
 						chart.legend.fit = function fit() {
@@ -197,8 +157,8 @@
 	});
 </script>
 
-<div class="relative w-auto h-[384px] md:h-[520px] margin-6">
-	<canvas bind:this={chart} id="income-tax" />
+<div class="relative w-auto h-[212px] margin-6" bind:offsetWidth={width}>
+	<canvas bind:this={chart} id="pop-dist" />
 </div>
 
 <style>
