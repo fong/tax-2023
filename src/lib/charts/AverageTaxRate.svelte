@@ -152,18 +152,6 @@
 					}
 				},
 				plugins: {
-					title: {
-						display: true,
-						text: `    Average Tax Rate (${(labelLower * 1000).toCurrency()} - ${(
-							labelUpper * 1000
-						).toCurrency()})`,
-						align: 'start',
-						font: {
-							size: 24,
-							weight: 'normal',
-							family: "'Source Sans 3', sans-serif"
-						}
-					},
 					legend: {
 						align: 'start',
 						labels: {
@@ -177,16 +165,6 @@
 			plugins: [
 				{
 					beforeInit: function (chart) {
-						// var data = chart.config.data;
-						// for (var i = 0; i < data.datasets.length; i++) {
-						// 	for (var j = 0; j < data.labels.length; j++) {
-						// 		var fct = data.datasets[i].function,
-						// 			x = data.labels[j],
-						// 			y = fct(x);
-						// 		data.datasets[i].data.push(y);
-						// 	}
-						// }
-
 						const originalFit = chart.legend.fit;
 
 						chart.legend.fit = function fit() {
@@ -200,7 +178,10 @@
 	});
 </script>
 
-<div class="relative w-auto h-[384px] md:h-[520px] margin-6">
+<div class="text-2xl">
+	Average Tax Rate ({(labelLower * 1000).toCurrency()} - {(labelUpper * 1000).toCurrency()})
+</div>
+<div class="relative w-auto h-[384px] md:h-[520px]">
 	<canvas bind:this={chart} id="average-tax-rate" />
 </div>
 

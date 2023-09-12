@@ -42,6 +42,15 @@
 			chart.options.plugins.title.text = `    Income Tax (${(labelLower * 1000).toCurrency()} - ${(
 				labelUpper * 1000
 			).toCurrency()})`;
+			if (window.innerWidth < 480) {
+				chart.options.scales.y.ticks.callback = function (x) {
+					return `${(x / 1000).toCurrency()}k`;
+				};
+			} else {
+				chart.options.scales.y.ticks.callback = function (x) {
+					return `${x.toCurrency()}`;
+				};
+			}
 			chart.update();
 		}
 	}
@@ -149,18 +158,6 @@
 					}
 				},
 				plugins: {
-					title: {
-						display: true,
-						text: `    Income Tax (${(labelLower * 1000).toCurrency()} - ${(
-							labelUpper * 1000
-						).toCurrency()})`,
-						align: 'start',
-						font: {
-							size: 24,
-							weight: 'normal',
-							family: "'Source Sans 3', sans-serif"
-						}
-					},
 					legend: {
 						align: 'start',
 						labels: {
@@ -174,16 +171,6 @@
 			plugins: [
 				{
 					beforeInit: function (chart) {
-						// var data = chart.config.data;
-						// for (var i = 0; i < data.datasets.length; i++) {
-						// 	for (var j = 0; j < data.labels.length; j++) {
-						// 		var fct = data.datasets[i].function,
-						// 			x = data.labels[j],
-						// 			y = fct(x);
-						// 		data.datasets[i].data.push(y);
-						// 	}
-						// }
-
 						const originalFit = chart.legend.fit;
 
 						chart.legend.fit = function fit() {
@@ -197,7 +184,10 @@
 	});
 </script>
 
-<div class="relative w-auto h-[384px] md:h-[520px] margin-6">
+<div class="text-2xl">
+	Income Tax ({(labelLower * 1000).toCurrency()} - {(labelUpper * 1000).toCurrency()})
+</div>
+<div class="relative w-auto h-[384px] md:h-[520px]">
 	<canvas bind:this={chart} id="income-tax" />
 </div>
 

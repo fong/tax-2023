@@ -30,6 +30,8 @@
 	"dependencies": {
 		"@melt-ui/svelte": "^0.47.6",
 		"chart.js": "^4.4.0",
-		"d3": "^7.8.5"
+		"clsx": "^2.0.0",
+		"d3": "^7.8.5",
+		"tailwind-merge": "^1.14.0"
 	}
 }

@@ -11,3 +11,7 @@ body {
 	max-width: 1200px;
 	margin: auto;
 }
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}
