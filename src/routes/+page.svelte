@@ -101,15 +101,16 @@
 	<div class="max-w-[1200px] mx-auto px-4 md:px-12 py-4">
 		<h4 class="text-xl">Notes:</h4>
 		<ol class="list-disc">
-			<li>
-				The top 30,190 taxpayers earning $300,000+ make up the remaining 0.38% of the population
+			<li class="my-1 ml-6">
+				Selecting a range of $0 to $300,000 only covers 99.62% of the taxpaying population. The top
+				30,190 taxpayers earning $300,000+ make up the remaining 0.38% of the population
 			</li>
-			<li>
+			<li class="my-1 ml-6">
 				Population distribution data above $200,000 is only available in $5,000 intervals and has
 				been averaged. Population count/percentage within each interval above $200,000 is an
 				approximation only.
 			</li>
-			<li>
+			<li class="my-1 ml-6">
 				NZ First has been excluded from the comparisons and they have not provided a definitive tax
 				policy other than to <a
 					class="italic font-bold hover:text-blue-700 hover:underline"
