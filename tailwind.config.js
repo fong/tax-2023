@@ -29,6 +29,7 @@ export default {
 			},
 			fontFamily: {
 				sans: [
+					'Source Sans 3',
 					'-apple-system',
 					'BlinkMacSystemFont',
 					'Segoe UI',
@@ -40,10 +41,7 @@ export default {
 					'Droid Sans',
 					'Helvetica Neue',
 					'Arial',
-					'sans-serif',
-					'Apple Color Emoji',
-					'Segoe UI Emoji',
-					'Segoe UI Symbol'
+					'sans-serif'
 				],
 				mono: [
 					'ui-monospace',

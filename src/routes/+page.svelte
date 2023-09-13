@@ -10,6 +10,8 @@
 	import '../utils/toCurrency';
 
 	import { createToggleGroup, melt } from '@melt-ui/svelte';
+	import TaxRevenueDistribution from '../lib/charts/TaxRevenueDistribution.svelte';
+	import TaxDifference from '../lib/charts/TaxDifference.svelte';
 
 	let min = 0;
 	let max = 301;
@@ -20,7 +22,7 @@
 	let graphOptions = [
 		{ id: 'income-tax', label: 'Income Tax' },
 		{ id: 'average-tax-rate', label: 'Average Tax Rate' },
-		{ id: 'tax-delta', label: 'Tax Difference' }
+		{ id: 'tax-delta', label: 'Tax Comparison' }
 		// { id: 'income-tax-distribution', label: 'Tax Income Distribution' },
 		// { id: 'assessed-tax-distribution', label: 'Tax Assessed Distribution' }
 	];
@@ -41,9 +43,9 @@
 	let labels = new Array(max - min).fill(0).map((_, i) => (i + min) * 1000);
 </script>
 
-<h1 class="text-7xl font-light mt-8 mb-0">Election 2023</h1>
-<h2 class="text-3xl font-bold mb-8">Tax Policies</h2>
-<h3 class="text-2xl italic">What do the proposed tax brackets actually mean?</h3>
+<h1 class="text-4xl md:text-7xl font-light mt-8 mb-0">Election 2023</h1>
+<h2 class="text-3xl font-bold mb-6">Tax Policies</h2>
+<h3 class="text-xl md:text-2xl italic mb-6">What do the proposed tax brackets actually mean?</h3>
 <div class="mb-8">
 	<label for="income-slider" class="text-sm z-10 mb-4"
 		>Click and drag the black bars to change the select an income range:
@@ -52,7 +54,7 @@
 <Slider {labels} bind:labelLower bind:labelUpper />
 <div
 	use:melt={$root}
-	class="grid md:grid-cols-4 grid-cols-1 grid-rows-4 md:grid-rows-1 mb-0 md:mb-8"
+	class="grid md:grid-cols-5 grid-cols-1 grid-rows-4 md:grid-rows-1 mt-16 mb-0 md:mb-8"
 	aria-label="Graph selection"
 >
 	{#each graphOptions as option, index}
@@ -76,7 +78,11 @@
 	<IncomeTax {labels} {labelLower} {labelUpper} {min} {max} />
 {:else if panel === 'average-tax-rate'}
 	<AverageTaxRate {labels} {labelLower} {labelUpper} {min} {max} />
+{:else if panel === 'tax-delta'}
+	<TaxDifference {labels} {labelLower} {labelUpper} {min} {max} />
 {/if}
+
+<!-- <TaxRevenueDistribution /> -->
 
 <style>
 </style>

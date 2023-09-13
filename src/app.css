@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 * {
-	font-family: 'Source Sans 3', -sans-serif;
+	font-family: 'Source Sans 3', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
+		'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Arial',
+		'sans-serif';
 }
 
 body {
@@ -14,4 +16,8 @@ body {
 
 button:focus:not(:focus-visible) {
 	outline: none;
+}
+
+option {
+	font-family: 'Source Sans 3', sans-serif;
 }

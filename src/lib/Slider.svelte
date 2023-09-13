@@ -53,9 +53,9 @@
 		<div class="text-2xl font-semibold">
 			{(visualLower * 1000).toCurrency()} - {(visualUpper * 1000).toCurrency()}
 		</div>
-		<div class="flex">
-			<div class="text-sm mr-4">
-				{((popCount / totalPopulation) * 100).toFixed(2)}% of all taxpayers
+		<div class="flex flex-col items-center md:flex-row">
+			<div class="text-sm mr-4 text-center">
+				Approximately {((popCount / totalPopulation) * 100).toFixed(2)}% of all taxpayers
 			</div>
 			<div class="text-sm">
 				{popCount.toLocaleString('en-NZ')} people
@@ -83,7 +83,7 @@
 				</div>
 			</div>
 			<div class="absolute top-0 z-0 w-full">
-				<PopulationDistribution {labels} {labelLower} {labelUpper} bind:width />
+				<PopulationDistribution bind:width />
 			</div>
 		</div>
 		<div class="flex justify-end w-full">

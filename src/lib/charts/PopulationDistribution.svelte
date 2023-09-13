@@ -3,11 +3,8 @@
 	import { onMount } from 'svelte';
 	import { distribution } from '../distribution.js';
 
-	export let labels;
 	let min = 0;
-	let max = 305;
-	export let labelLower;
-	export let labelUpper;
+	let max = 301;
 	export let width;
 	let chart;
 
