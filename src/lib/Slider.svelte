@@ -15,13 +15,12 @@
 	let width;
 	let sliderArea;
 	let popCount;
-	let totalPopulation = 4362650;
-
+	let totalPopulation = 4516880;
 	const {
 		elements: { root, range, thumb },
 		states: { value }
 	} = createSlider({
-		defaultValue: [0, 132],
+		defaultValue: [0, 138],
 		min: 0,
 		max: 300,
 		step: 1
@@ -29,7 +28,7 @@
 
 	onMount(() => {
 		labelLower = parseInt($page.url.searchParams.get('lower')) || 0;
-		labelUpper = parseInt($page.url.searchParams.get('upper')) || 132;
+		labelUpper = parseInt($page.url.searchParams.get('upper')) || 138;
 		value.set([labelLower, labelUpper]);
 	});
 
@@ -105,10 +104,15 @@
 				<PopulationDistribution bind:width />
 			</div>
 		</div>
-		<div class="flex justify-end w-full">
-			<div class="text-sm italic">
-				Taxable income distribution of individuals, Inland Revenue Department, 2021
-			</div>
+		<div class="flex justify-end w-full z-20 hover:underline hover:text-blue-700">
+			<a
+				class="text-sm italic"
+				href="https://www.ird.govt.nz/about-us/tax-statistics/revenue-refunds/income-distribution/tax-on-taxable-income-datasets"
+				target="_blank"
+				aria-label="dataset source for Taxable income distribution of individuals, Inland Revenue Department"
+			>
+				Taxable income distribution of individuals, Inland Revenue Department, 2022
+			</a>
 		</div>
 	</div>
 </div>

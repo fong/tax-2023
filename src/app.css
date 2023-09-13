@@ -8,12 +8,6 @@
 		'sans-serif';
 }
 
-body {
-	padding: 16px;
-	max-width: 1200px;
-	margin: auto;
-}
-
 button:focus:not(:focus-visible) {
 	outline: none;
 }
