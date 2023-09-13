@@ -194,8 +194,12 @@
 	});
 </script>
 
-<div class="text-2xl mb-4">
+<div class="text-2xl">
 	Income Tax Comparison ({(labelLower * 1000).toCurrency()} - {(labelUpper * 1000).toCurrency()})
+</div>
+<div class="text-sm mb-4">
+	Positive values indicate <span class="italic">"better off"</span>, negative values indicate
+	<span class="italic">"worse off"</span>
 </div>
 <div class="flex flex-col">
 	<label for="benchmark-select mr-4" aria-label="tax comparison benchmark select"

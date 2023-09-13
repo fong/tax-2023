@@ -99,12 +99,33 @@
 
 <footer class="w-full mx-auto mt-16 px-4 md:px-12 py-4 bg-black/10">
 	<div class="max-w-[1200px] mx-auto px-4 md:px-12 py-4">
-		<a
-			href="https://github.com/fong/tax-2023"
-			target="_blank"
-			aria-label="Github source repo"
-			class="hover:text-blue-700 hover:underline">Github</a
-		>
+		<h4 class="text-xl">Notes:</h4>
+		<ol class="list-disc">
+			<li>
+				The top 30,190 taxpayers earning $300,000+ make up the remaining 0.38% of the population
+			</li>
+			<li>
+				Population distribution data above $200,000 is only available in $5,000 intervals and has
+				been averaged. Population count/percentage within each interval above $200,000 is an
+				approximation only.
+			</li>
+			<li>
+				NZ First has been excluded from the comparisons and they have not provided a definitive tax
+				policy other than to <a
+					class="italic font-bold hover:text-blue-700 hover:underline"
+					href="https://www.nzfirst.nz/2023_commitments"
+					target="_blank">ensure tax income brackets are adjusted to inflation</a
+				>
+			</li>
+		</ol>
+		<div class="mt-4">
+			<a
+				href="https://github.com/fong/tax-2023"
+				target="_blank"
+				aria-label="Github source repo"
+				class="hover:text-blue-700 hover:underline">Github</a
+			>
+		</div>
 	</div>
 </footer>
 

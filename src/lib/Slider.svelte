@@ -73,7 +73,7 @@
 		</div>
 		<div class="flex flex-col items-center md:flex-row">
 			<div class="text-sm mr-4 text-center">
-				Approximately {((popCount / totalPopulation) * 100).toFixed(2)}% of all taxpayers
+				Approximately {((popCount / totalPopulation) * 100).toFixed(2)}% of all taxpayers*
 			</div>
 			<div class="text-sm">
 				{popCount.toLocaleString('en-NZ')} people
