@@ -1,7 +1,10 @@
 <script>
+	import { onMount } from 'svelte';
 	import { createSlider, melt } from '@melt-ui/svelte';
 	import PopulationDistribution from '../lib/charts/PopulationDistribution.svelte';
 	import { distribution } from './distribution';
+	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 
 	export let labels;
 	export let labelLower;
@@ -22,6 +25,12 @@
 		min: 0,
 		max: 300,
 		step: 1
+	});
+
+	onMount(() => {
+		labelLower = parseInt($page.url.searchParams.get('lower')) || 0;
+		labelUpper = parseInt($page.url.searchParams.get('upper')) || 132;
+		value.set([labelLower, labelUpper]);
 	});
 
 	const debounce = (v) => {
@@ -46,10 +55,20 @@
 			}
 		});
 	}
+
+	$: {
+		if (browser) {
+			const url = new URL(window.location.toString());
+			url.searchParams.set('lower', labelLower);
+			url.searchParams.set('upper', labelUpper);
+			history.replaceState({}, '', url);
+			value.set([labelLower, labelUpper]);
+		}
+	}
 </script>
 
 <div class="relative mb-8 flex-col">
-	<div class="flex flex-col justify-center items-center">
+	<div class="flex flex-col justify-center items-center min-h-[72px]">
 		<div class="text-2xl font-semibold">
 			{(visualLower * 1000).toCurrency()} - {(visualUpper * 1000).toCurrency()}
 		</div>

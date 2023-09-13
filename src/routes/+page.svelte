@@ -1,28 +1,25 @@
 <script>
 	import { onMount } from 'svelte';
-	// import { createSlider, melt } from '@melt-ui/svelte';
 	import Slider from '../lib/Slider.svelte';
+	import { cn } from '../utils/twMerge';
+	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
+	import '../utils/toCurrency';
+	import { createToggleGroup, melt } from '@melt-ui/svelte';
 	import AverageTaxRate from '../lib/charts/AverageTaxRate.svelte';
 	import IncomeTax from '../lib/charts/IncomeTax.svelte';
-	import clsx from 'clsx';
-	import { cn } from '../utils/twMerge';
-
-	import '../utils/toCurrency';
-
-	import { createToggleGroup, melt } from '@melt-ui/svelte';
-	import TaxRevenueDistribution from '../lib/charts/TaxRevenueDistribution.svelte';
 	import TaxDifference from '../lib/charts/TaxDifference.svelte';
 
 	let min = 0;
 	let max = 301;
 	let chart;
-	let labelLower = 0;
-	let labelUpper = 301;
+	let labelLower;
+	let labelUpper;
 	let panel = 'income-tax';
 	let graphOptions = [
 		{ id: 'income-tax', label: 'Income Tax' },
 		{ id: 'average-tax-rate', label: 'Average Tax Rate' },
-		{ id: 'tax-delta', label: 'Tax Comparison' }
+		{ id: 'tax-comparison', label: 'Tax Comparison' }
 		// { id: 'income-tax-distribution', label: 'Tax Income Distribution' },
 		// { id: 'assessed-tax-distribution', label: 'Tax Assessed Distribution' }
 	];
@@ -39,6 +36,20 @@
 			}
 		}
 	});
+
+	onMount(() => {
+		panel = parseInt($page.url.searchParams.get('chart')) || 'income-tax';
+		value.set(panel);
+	});
+
+	$: {
+		if (browser) {
+			const url = new URL(window.location.toString());
+			url.searchParams.set('chart', panel);
+			history.replaceState({}, '', url);
+			value.set(panel);
+		}
+	}
 
 	let labels = new Array(max - min).fill(0).map((_, i) => (i + min) * 1000);
 </script>
@@ -78,9 +89,11 @@
 	<IncomeTax {labels} {labelLower} {labelUpper} {min} {max} />
 {:else if panel === 'average-tax-rate'}
 	<AverageTaxRate {labels} {labelLower} {labelUpper} {min} {max} />
-{:else if panel === 'tax-delta'}
+{:else if panel === 'tax-comparison'}
 	<TaxDifference {labels} {labelLower} {labelUpper} {min} {max} />
 {/if}
+
+<div class="mt-4" />
 
 <!-- <TaxRevenueDistribution /> -->
 
