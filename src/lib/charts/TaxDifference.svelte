@@ -1,6 +1,6 @@
 <script>
 	import Chart from 'chart.js/auto';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import {
 		calculateTax,
 		bracketsNational,
@@ -74,6 +74,12 @@
 			history.replaceState({}, '', url);
 		}
 	}
+
+	onDestroy(async () => {
+		const url = new URL(window.location.toString());
+		url.searchParams.delete('tax-diff');
+		history.replaceState({}, '', url);
+	});
 
 	onMount(async (promise) => {
 		benchmark = parseInt($page.url.searchParams.get('tax-diff')) || 0;
@@ -256,10 +262,6 @@
 				}
 			]
 		});
-		// not currently working?
-		return () => {
-			$page.url.searchParams.delete('tax-diff');
-		};
 	});
 </script>
 
