@@ -53,21 +53,10 @@ export default {
 					'monospace'
 				]
 			}
-			// typography: (theme) => ({
-			// 	DEFAULT: {
-			// 		css: {
-			// 			code: {
-			// 				position: 'relative',
-			// 				borderRadius: theme('borderRadius.md')
-			// 			}
-			// 		}
-			// 	}
-			// })
 		}
 	},
 
 	plugins: [
-		// typography,
 		plugin(function ({ addVariant, matchUtilities, theme }) {
 			addVariant('hocus', ['&:hover', '&:focus']);
 			// Square utility

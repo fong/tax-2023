@@ -1,5 +1,3 @@
-// import * as fs from 'fs';
-
 const income_max = 9999999;
 
 export const bracketStatusQuo = [
@@ -91,34 +89,3 @@ export const lmito = (income) => {
 		return 0;
 	}
 };
-
-// const stream = fs.createWriteStream('tax-2023-percent.csv');
-
-// stream.once('open', () => {
-// 	console.log(`income,labour,national,act,actRebate,tpm,top,greens`);
-// 	stream.write(`income,labour,national,act,actRebate,tpm,top,greens\n`);
-
-// 	for (let income = 0; income <= 1000000; income += 1000) {
-// 		// const sq = calculateTax(income, bracketStatusQuo);
-// 		// const national = calculateTax(income, bracketsNational);
-// 		// const act = calculateTax(income, bracketsAct);
-// 		// const actRebate = calculateTax(income, bracketsAct) - lmito(income);
-// 		// const greens = calculateTax(income, bracketsGreens);
-// 		// const tpm = calculateTax(income, bracketsTPM);
-// 		// const top = calculateTax(income, bracketsTOP);
-// 		const sq = calculateTaxPercent(income, bracketStatusQuo);
-// 		const national = calculateTaxPercent(income, bracketsNational);
-// 		const act = calculateTaxPercent(income, bracketsAct);
-// 		const actRebate = ((calculateTax(income, bracketsAct) - lmito(income)) / income || 0).toFixed(
-// 			3
-// 		);
-// 		const greens = calculateTaxPercent(income, bracketsGreens);
-// 		const tpm = calculateTaxPercent(income, bracketsTPM);
-// 		const top = calculateTaxPercent(income, bracketsTOP);
-
-// 		console.log(`${income},${sq},${national},${act},${actRebate},${tpm},${top},${greens}`);
-// 		stream.write(`${income},${sq},${national},${act},${actRebate},${tpm},${top},${greens}\n`);
-// 	}
-
-// 	stream.end();
-// });

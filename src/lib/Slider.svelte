@@ -6,7 +6,6 @@
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
 
-	export let labels;
 	export let labelLower;
 	export let labelUpper;
 	let visualLower = labelLower;
@@ -116,9 +115,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	.mask {
-		/* clip: rect(10px, 190px, 190px, 10px); */
-	}
-</style>
