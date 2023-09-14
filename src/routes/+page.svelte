@@ -57,20 +57,33 @@
 <svelte:head>
 	<title>Election 2023 - Tax Policies</title>
 	<meta charset="UTF-8" />
+	<!-- HTML Meta Tags -->
+	<title>Tax Policy Comparison - Election 2023</title>
 	<meta
 		name="description"
-		content="A comparison of party tax policies for the 2023 New Zealand General Election"
+		content="Compare party tax policies and how that can impact you and the rest of the NZ population"
 	/>
-	<meta
-		name="keywords"
-		content="Income Tax, Tax Policy, PAYE, 2023 New Zealand General Elections, National, Labour, ACT, Greens, Te Pati Maori, The Opportunities Party, Tax Distribution, UBI, Tax Comparison, Tax Cut, Taxpayer"
-	/>
-	<meta property="og:title" content="Compare party tax policies - Election 2023" />
-	<meta property="og:url" content="https://tax.tofoo.co" />
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://tax.tofoo.co/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Tax Policy Comparison - Election 2023" />
 	<meta
 		property="og:description"
-		content="Compare party tax policies for the 2023 New Zealand General Election"
+		content="Compare party tax policies and how that can impact you and the rest of the NZ population"
 	/>
+	<meta property="og:image" content="https://tax.tofoo.co/og.jpg" />
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta property="twitter:domain" content="tax.tofoo.co" />
+	<meta property="twitter:url" content="https://tax.tofoo.co/" />
+	<meta name="twitter:title" content="Tax Policy Comparison - Election 2023" />
+	<meta
+		name="twitter:description"
+		content="Compare party tax policies and how that can impact you and the rest of the NZ population"
+	/>
+	<meta name="twitter:image" content="https://tax.tofoo.co/og.jpg" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 <header class="max-w-[1200px] mx-auto px-4 md:px-12 py-4">
