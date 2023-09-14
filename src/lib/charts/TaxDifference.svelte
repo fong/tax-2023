@@ -11,6 +11,8 @@
 		bracketsTPM,
 		bracketsTOP
 	} from '../../utils/generateData';
+	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 
 	export let labels;
 	export let min = 0;
@@ -65,7 +67,17 @@
 		}
 	}
 
+	$: {
+		if (browser) {
+			const url = new URL(window.location.toString());
+			url.searchParams.set('tax-diff', benchmark || 0);
+			history.replaceState({}, '', url);
+		}
+	}
+
 	onMount(async (promise) => {
+		benchmark = parseInt($page.url.searchParams.get('tax-diff')) || 0;
+
 		var ctx = document.getElementById('income-tax');
 		var data = {
 			labels: labels,
@@ -175,6 +187,44 @@
 							usePointStyle: true,
 							pointStyle: 'circle'
 						}
+					},
+					tooltip: {
+						enabled: true,
+						mode: 'index',
+						intersect: false,
+						caretSize: 16,
+						borderWidth: 2,
+						borderColor: '#000',
+						boxPadding: 6,
+						padding: 12,
+						callbacks: {
+							title: function (context, data) {
+								return `$${context[0].label}`;
+							},
+							label: function (context) {
+								return `${context.dataset.label}: ${context.raw.toCurrency()}`;
+							},
+							labelPointStyle: function () {
+								return {
+									pointStyle: 'circle',
+									rotation: 0
+								};
+							}
+						},
+						usePointStyle: true,
+						backgroundColor: '#ffffffff',
+						titleFont: {
+							size: 18,
+							family: "'Source Sans 3', 'sans-serif'",
+							lineHeight: 1.4
+						},
+						titleColor: '#000',
+						bodyFont: {
+							size: 16,
+							family: "'Source Sans 3', 'sans-serif'",
+							lineHeight: 1.4
+						},
+						bodyColor: '#222'
 					}
 				}
 			},
@@ -187,10 +237,29 @@
 							originalFit.bind(chart.legend)();
 							this.height += 15;
 						};
+					},
+					beforeTooltipDraw: (chart) => {
+						if (chart.tooltip?._active?.length) {
+							let x = chart.tooltip._active[0].element.x;
+							let yAxis = chart.scales.y;
+							let ctx = chart.ctx;
+							ctx.save();
+							ctx.beginPath();
+							ctx.moveTo(x, yAxis.top);
+							ctx.lineTo(x, yAxis.bottom);
+							ctx.lineWidth = 1;
+							ctx.strokeStyle = '#000';
+							ctx.stroke();
+							ctx.restore();
+						}
 					}
 				}
 			]
 		});
+		// not currently working?
+		return () => {
+			$page.url.searchParams.delete('tax-diff');
+		};
 	});
 </script>
 

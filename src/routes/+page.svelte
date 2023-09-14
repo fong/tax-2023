@@ -12,10 +12,9 @@
 
 	let min = 0;
 	let max = 301;
-	let chart;
 	let labelLower;
 	let labelUpper;
-	let panel = 'income-tax';
+	let panel;
 	let graphOptions = [
 		{ id: 'income-tax', label: 'Income Tax' },
 		{ id: 'average-tax-rate', label: 'Average Tax Rate' },
@@ -23,6 +22,7 @@
 		// { id: 'income-tax-distribution', label: 'Tax Income Distribution' },
 		// { id: 'assessed-tax-distribution', label: 'Tax Assessed Distribution' }
 	];
+	let copyText = 'Copy link to graph';
 
 	const {
 		elements: { root, item },
@@ -38,7 +38,7 @@
 	});
 
 	onMount(() => {
-		panel = parseInt($page.url.searchParams.get('chart')) || 'income-tax';
+		panel = $page.url.searchParams.get('chart') || 'income-tax';
 		value.set(panel);
 	});
 
@@ -52,6 +52,27 @@
 	}
 
 	let labels = new Array(max - min).fill(0).map((_, i) => (i + min) * 1000);
+
+	const copyLink = () => {
+		if (browser) {
+			navigator.clipboard.writeText(window.location.toString() + '#graph').then(
+				() => {
+					/* clipboard successfully set */
+					copyText = 'Copied!';
+					setTimeout(() => {
+						copyText = 'Copy link to graph';
+					}, 3000);
+				},
+				() => {
+					/* clipboard write failed */
+					copyText = 'Copy Failed!';
+					setTimeout(() => {
+						copyText = 'Copy link to graph';
+					}, 3000);
+				}
+			);
+		}
+	};
 </script>
 
 <svelte:head>
@@ -98,6 +119,7 @@
 		</label>
 	</div>
 	<Slider {labels} bind:labelLower bind:labelUpper />
+	<div id="graph" />
 	<div
 		use:melt={$root}
 		class="grid md:grid-cols-5 grid-cols-1 grid-rows-4 md:grid-rows-1 mt-16 mb-0 md:mb-8"
@@ -119,7 +141,12 @@
 			</button>
 		{/each}
 	</div>
-
+	<div class="flex justify-end">
+		<button
+			on:click={copyLink}
+			class="w-32 border-2 border-black/40 text-black/75 text-sm px-1 rounded">{copyText}</button
+		>
+	</div>
 	{#if panel === 'income-tax'}
 		<IncomeTax {labels} {labelLower} {labelUpper} {min} {max} />
 	{:else if panel === 'average-tax-rate'}
