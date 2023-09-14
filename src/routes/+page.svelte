@@ -15,6 +15,8 @@
 	let labelLower;
 	let labelUpper;
 	let panel;
+	let popCount;
+	let totalPopulation;
 	let graphOptions = [
 		{ id: 'income-tax', label: 'Income Tax' },
 		{ id: 'average-tax-rate', label: 'Average Tax Rate' },
@@ -118,42 +120,46 @@
 			>Click and drag the black bars to change the select an income range:
 		</label>
 	</div>
-	<Slider {labels} bind:labelLower bind:labelUpper />
-	<div id="graph" />
-	<div
-		use:melt={$root}
-		class="grid md:grid-cols-5 grid-cols-1 grid-rows-4 md:grid-rows-1 mt-16 mb-0 md:mb-8"
-		aria-label="Graph selection"
-	>
-		{#each graphOptions as option, index}
-			<button
-				class={cn(
-					'px-1 py-2',
-					'focus:outline-4 focus:outline focus:outline-gray-300',
-					panel === option.id ? 'bg-black text-white' : 'bg-black/20 text-black',
-					index === 0 && 'rounded-t-md md:rounded-bl-md md:rounded-tr-none',
-					index === graphOptions.length - 1 && 'rounded-b-md md:rounded-tr-md md:rounded-bl-none'
-				)}
-				use:melt={$item(option.id)}
-				aria-label={option.label}
-			>
-				{option.label}
-			</button>
-		{/each}
-	</div>
-	<div class="flex justify-end">
-		<button
-			on:click={copyLink}
-			class="w-32 border-2 border-black/40 text-black/75 text-sm px-1 rounded">{copyText}</button
+	<Slider {labels} bind:labelLower bind:labelUpper bind:totalPopulation bind:popCount />
+	<div id="graph">
+		<div
+			use:melt={$root}
+			class="grid md:grid-cols-5 grid-cols-1 grid-rows-4 md:grid-rows-1 mt-16 mb-0 md:mb-8"
+			aria-label="Graph selection"
 		>
+			{#each graphOptions as option, index}
+				<a
+					class={cn(
+						'px-1 py-2 text-center',
+						'focus:outline-4 focus:outline focus:outline-gray-800',
+						panel === option.id ? 'bg-black text-white' : 'bg-black/20 text-black',
+						index === 0 && 'rounded-t-md md:rounded-bl-md md:rounded-tr-none',
+						index === graphOptions.length - 1 && 'rounded-b-md md:rounded-tr-md md:rounded-bl-none'
+					)}
+					use:melt={$item(option.id)}
+					href="#graph"
+					tabindex="0"
+					aria-label={option.label}
+				>
+					{option.label}
+				</a>
+			{/each}
+		</div>
+		<div class="flex justify-end">
+			<button
+				on:click={copyLink}
+				class="w-32 border-2 border-black/40 text-black/75 text-sm px-1 rounded hover:bg-black/10"
+				>{copyText}</button
+			>
+		</div>
+		{#if panel === 'income-tax'}
+			<IncomeTax {labels} {labelLower} {labelUpper} {min} {max} {totalPopulation} {popCount} />
+		{:else if panel === 'average-tax-rate'}
+			<AverageTaxRate {labels} {labelLower} {labelUpper} {min} {max} {totalPopulation} {popCount} />
+		{:else if panel === 'tax-comparison'}
+			<TaxDifference {labels} {labelLower} {labelUpper} {min} {max} {totalPopulation} {popCount} />
+		{/if}
 	</div>
-	{#if panel === 'income-tax'}
-		<IncomeTax {labels} {labelLower} {labelUpper} {min} {max} />
-	{:else if panel === 'average-tax-rate'}
-		<AverageTaxRate {labels} {labelLower} {labelUpper} {min} {max} />
-	{:else if panel === 'tax-comparison'}
-		<TaxDifference {labels} {labelLower} {labelUpper} {min} {max} />
-	{/if}
 </main>
 
 <footer class="w-full mx-auto mt-16 px-4 md:px-12 py-4 md:py-8 bg-black/10">
@@ -171,8 +177,7 @@
 			</li>
 			<li class="my-1 ml-6">
 				The comparisons above are based upon the steady state of the proposed party tax policy (e.g.
-				the ACT policy is an incremental adoption which reaches it's two-rate tax policy on
-				FY2025/26 )
+				ACT has an incremental adoption policy which reaches it's two-rate tax policy on FY2025/26 )
 			</li>
 			<li class="my-1 ml-6">
 				Calculations for ACT include the <a

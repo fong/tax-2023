@@ -13,8 +13,8 @@
 	let timer;
 	let width;
 	let sliderArea;
-	let popCount;
-	let totalPopulation = 4516880;
+	export let popCount;
+	export let totalPopulation = 4516880;
 	const {
 		elements: { root, range, thumb },
 		states: { value }

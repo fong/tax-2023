@@ -19,6 +19,8 @@
 	export let max = 301;
 	export let labelLower = 0;
 	export let labelUpper = 301;
+	export let popCount;
+	export let totalPopulation;
 	let benchmark = 0;
 	let transformedDatasets;
 	let chart;
@@ -265,10 +267,19 @@
 	});
 </script>
 
-<div class="text-2xl">
-	Income Tax Comparison ({(labelLower * 1000).toCurrency()} - {(labelUpper * 1000).toCurrency()})
+<div class="text-2xl font-bold">Income Tax Comparison</div>
+<div class="flex justify-between">
+	<div class="text-sm text-black/60">
+		<span class="font-bold">Income Range</span>
+		<br />{(labelLower * 1000).toCurrency()} - {(labelUpper * 1000).toCurrency()}
+	</div>
+	<div class="text-sm text-black/60 text-right">
+		<span class="font-bold">Taxpayer population coverage</span>
+		<br />{((popCount / totalPopulation) * 100).toFixed(2)}% -
+		{totalPopulation.toLocaleString('en-NZ')} people
+	</div>
 </div>
-<div class="text-sm mb-4">
+<div class="text-sm mb-4 mt-4">
 	Positive values indicate <span class="italic">"better off"</span>, negative values indicate
 	<span class="italic">"worse off"</span>
 </div>
