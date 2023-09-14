@@ -27,7 +27,10 @@
 			.fill(0)
 			.map(
 				(_, i) =>
-					+((calculateTax(i * 1000, bracketsAct) - lmito(i * 1000)) / (i * 1000) || 0).toFixed(6)
+					+(
+						(calculateTax(i * 1000, bracketsAct) - lmito(i * 1000)) / (i * 1000) ||
+						bracketsAct[0][2]
+					).toFixed(6)
 			),
 		new Array(max - min).fill(0).map((_, i) => calculateTaxPercent(i * 1000, bracketsGreens)),
 		new Array(max - min).fill(0).map((_, i) => calculateTaxPercent(i * 1000, bracketsTPM)),

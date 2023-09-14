@@ -54,6 +54,25 @@
 	let labels = new Array(max - min).fill(0).map((_, i) => (i + min) * 1000);
 </script>
 
+<svelte:head>
+	<title>Election 2023 - Tax Policies</title>
+	<meta charset="UTF-8" />
+	<meta
+		name="description"
+		content="A comparison of party tax policies for the 2023 New Zealand General Election"
+	/>
+	<meta
+		name="keywords"
+		content="Income Tax, Tax Policy, PAYE, 2023 New Zealand General Elections, National, Labour, ACT, Greens, Te Pati Maori, The Opportunities Party, Tax Distribution, UBI, Tax Comparison, Tax Cut, Taxpayer"
+	/>
+	<meta property="og:title" content="Compare party tax policies - Election 2023" />
+	<meta property="og:url" content="https://tax.tofoo.co" />
+	<meta
+		property="og:description"
+		content="Compare party tax policies for the 2023 New Zealand General Election"
+	/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</svelte:head>
 <header class="max-w-[1200px] mx-auto px-4 md:px-12 py-4">
 	<h1 class="text-4xl md:text-7xl font-light mt-8 mb-0">Election 2023</h1>
 	<h2 class="text-3xl font-bold mb-6">Tax Policies</h2>
@@ -97,18 +116,30 @@
 	{/if}
 </main>
 
-<footer class="w-full mx-auto mt-16 px-4 md:px-12 py-4 bg-black/10">
+<footer class="w-full mx-auto mt-16 px-4 md:px-12 py-4 md:py-8 bg-black/10">
 	<div class="max-w-[1200px] mx-auto px-4 md:px-12 py-4">
 		<h4 class="text-xl">Notes:</h4>
 		<ol class="list-disc">
 			<li class="my-1 ml-6">
-				Selecting a range of $0 to $300,000 only covers 99.62% of the taxpaying population. The top
-				30,190 taxpayers earning $300,000+ make up the remaining 0.38% of the population
+				The income range from $0 to $300,000 covers 99.62% of the taxpayers. The top taxpayers
+				earning $300,000+ make up the remaining 0.38% of taxpayers (30,190 people).
 			</li>
 			<li class="my-1 ml-6">
-				Population distribution data above $200,000 is only available in $5,000 intervals and has
-				been averaged. Population count/percentage within each interval above $200,000 is an
+				Population distribution data above $200,000 is only available in $5,000 intervals.
+				Population count/percentage within each $5,000 interval above $200,000 is an averaged
 				approximation only.
+			</li>
+			<li class="my-1 ml-6">
+				The comparisons above are based upon the steady state of the proposed party tax policy (e.g.
+				the ACT policy is an incremental adoption which reaches it's two-rate tax policy on
+				FY2025/26 )
+			</li>
+			<li class="my-1 ml-6">
+				Calculations for ACT include the <a
+					class="italic font-bold hover:text-blue-700 hover:underline"
+					href="https://www.act.org.nz/tax"
+					target="_blank">Low and Middle Income Tax Offset (LMITO)</a
+				> for incomes between $2,000 to $58,000.
 			</li>
 			<li class="my-1 ml-6">
 				NZ First has been excluded from the comparisons and they have not provided a definitive tax
@@ -119,7 +150,7 @@
 				>
 			</li>
 		</ol>
-		<div class="mt-4">
+		<div class="mt-8 flex justify-end">
 			<a
 				href="https://github.com/fong/tax-2023"
 				target="_blank"

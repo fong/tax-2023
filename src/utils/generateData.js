@@ -74,7 +74,7 @@ export const calculateTaxPercent = (income, brackets) => {
 		}
 	}
 
-	return +(totalTaxes / income || 0).toFixed(8);
+	return +(totalTaxes / income || brackets[0][2]).toFixed(8);
 };
 
 // ACT's tax offset for $12k-$58k
