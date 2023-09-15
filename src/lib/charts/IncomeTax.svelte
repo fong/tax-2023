@@ -248,7 +248,7 @@
 	<div class="text-sm text-black/60 text-right">
 		<span class="font-bold">Taxpayer population coverage</span>
 		<br />{((popCount / totalPopulation) * 100).toFixed(2)}% -
-		{totalPopulation.toLocaleString('en-NZ')} people
+		{popCount.toLocaleString('en-NZ')} people
 	</div>
 </div>
 <div class="relative w-auto h-[384px] md:h-[520px]">

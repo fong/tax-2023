@@ -86,7 +86,7 @@
 	onMount(async (promise) => {
 		benchmark = parseInt($page.url.searchParams.get('tax-diff')) || 0;
 
-		var ctx = document.getElementById('income-tax');
+		ctx = document.getElementById('income-tax');
 		var data = {
 			labels: labels,
 			yAxes: {},
@@ -153,7 +153,7 @@
 					y: {
 						title: {
 							display: true,
-							text: 'Income Tax',
+							text: 'Income Tax Difference',
 							font: {
 								size: 20,
 								family: "'Source Sans 3', sans-serif",
@@ -276,7 +276,7 @@
 	<div class="text-sm text-black/60 text-right">
 		<span class="font-bold">Taxpayer population coverage</span>
 		<br />{((popCount / totalPopulation) * 100).toFixed(2)}% -
-		{totalPopulation.toLocaleString('en-NZ')} people
+		{popCount.toLocaleString('en-NZ')} people
 	</div>
 </div>
 <div class="text-sm mb-4 mt-4">

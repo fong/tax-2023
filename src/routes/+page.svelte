@@ -119,7 +119,7 @@
 <main class="max-w-[1200px] mx-auto px-4 md:px-12 py-4">
 	<div class="mb-8">
 		<label for="income-slider" class="text-sm z-10 mb-4"
-			>Click and drag the black bars to change the select an income range:
+			>Click and drag the black bars to change the income range:
 		</label>
 	</div>
 	<Slider {labels} bind:labelLower bind:labelUpper bind:totalPopulation bind:popCount />
@@ -189,12 +189,12 @@
 				> for incomes between $2,000 to $58,000.
 			</li>
 			<li class="my-1 ml-6">
-				NZ First has been excluded from the comparisons and they have not provided a definitive tax
-				policy other than to <a
+				NZ First has been excluded from the comparisons as they have not provided a definitive tax
+				bracket policy other than to <a
 					class="italic font-bold hover:text-blue-700 hover:underline"
 					href="https://www.nzfirst.nz/2023_commitments"
 					target="_blank">ensure tax income brackets are adjusted to inflation</a
-				>
+				>.
 			</li>
 		</ol>
 		<div class="mt-8 flex justify-end">
