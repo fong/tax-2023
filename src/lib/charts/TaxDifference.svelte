@@ -86,7 +86,7 @@
 	onMount(async (promise) => {
 		benchmark = parseInt($page.url.searchParams.get('tax-diff')) || 0;
 
-		ctx = document.getElementById('income-tax');
+		var ctx = document.getElementById('income-tax');
 		var data = {
 			labels: labels,
 			yAxes: {},
