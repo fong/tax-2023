@@ -86,22 +86,22 @@
 				},
 				{
 					label: 'Green',
-					borderColor: '#00491e',
-					backgroundColor: '#00491e',
+					borderColor: '#00ba32',
+					backgroundColor: '#00ba32',
 					data: precalc[3],
 					fill: false
 				},
 				{
 					label: 'TPM',
-					borderColor: '#7c2629',
-					backgroundColor: '#7c2629',
+					borderColor: '#630000',
+					backgroundColor: '#630000',
 					data: precalc[4],
 					fill: false
 				},
 				{
 					label: 'TOP',
-					borderColor: '#0bb598',
-					backgroundColor: '#0bb598',
+					borderColor: '#26a7cb',
+					backgroundColor: '#26a7cb',
 					data: precalc[5],
 					fill: false
 				}

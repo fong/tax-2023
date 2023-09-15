@@ -110,7 +110,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 <header class="max-w-[1200px] mx-auto px-4 md:px-12 py-4">
-	<h1 class="text-4xl md:text-7xl font-light mt-8 mb-0">Election 2023</h1>
+	<h1 class="text-4xl md:text-6xl font-light mt-8 mb-0">Election 2023</h1>
 	<h2 class="text-3xl font-bold mb-6">Tax Policies</h2>
 	<h3 class="text-xl md:text-2xl italic mb-6">
 		What do the proposed tax brackets actually mean for you and the rest of the NZ population?
