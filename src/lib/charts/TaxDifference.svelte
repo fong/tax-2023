@@ -178,7 +178,7 @@
 							}
 						},
 						ticks: {
-							stepSize: 20000,
+							count: 10,
 							callback: function (x) {
 								return `${x.toCurrency()}`;
 							}
