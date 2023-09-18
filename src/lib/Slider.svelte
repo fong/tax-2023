@@ -94,7 +94,7 @@
 					{#each $value as _}
 						<span
 							use:melt={$thumb()}
-							class="block h-[188px] w-1 bg-black focus:ring-4 focus:ring-black/40"
+							class="block h-[188px] w-1 bg-black focus:ring-4 focus:ring-black/40 cursor-col-resize"
 						/>
 					{/each}
 				</div>
