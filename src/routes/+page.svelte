@@ -117,7 +117,7 @@
 	</h3>
 </header>
 <main class="max-w-[1200px] mx-auto px-4 md:px-12 py-4">
-	<div class="mb-8">
+	<div class="mb-4">
 		<label for="income-slider" class="text-sm z-10 mb-4"
 			>Click and drag the black bars to change the income range:
 		</label>
