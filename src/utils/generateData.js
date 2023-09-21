@@ -26,7 +26,8 @@ export const bracketsTOP = [
 
 export const bracketsAct = [
 	[0, 70000, 0.175],
-	[70000, income_max, 0.28]
+	[70000, 180000, 0.3],
+	[180000, income_max, 0.33]
 ];
 
 export const bracketsGreens = [
