@@ -180,8 +180,8 @@
 			<li class="my-1 ml-6">
 				The comparisons above are based upon the steady state of the proposed party tax policy. For
 				example, ACT policy has an incremental adoption policy which reaches it's two-rate tax
-				policy on FY2025/26, NZ First policy includes inflation adjustment from 2027 (not further
-				defined).
+				policy on FY2025/26. NZ First policy includes an inflation adjustment from 2027 (this is
+				excluded from the charts as this will ongoing and vary year by year).
 			</li>
 			<li class="my-1 ml-6">
 				Calculations for ACT include the <a
