@@ -178,8 +178,10 @@
 				approximation only.
 			</li>
 			<li class="my-1 ml-6">
-				The comparisons above are based upon the steady state of the proposed party tax policy (e.g.
-				ACT has an incremental adoption policy which reaches it's two-rate tax policy on FY2025/26 )
+				The comparisons above are based upon the steady state of the proposed party tax policy. For
+				example, ACT policy has an incremental adoption policy which reaches it's two-rate tax
+				policy on FY2025/26, NZ First policy includes inflation adjustment from 2027 (not further
+				defined).
 			</li>
 			<li class="my-1 ml-6">
 				Calculations for ACT include the <a
@@ -188,14 +190,14 @@
 					target="_blank">Low and Middle Income Tax Offset (LMITO)</a
 				> for incomes between $2,000 to $58,000.
 			</li>
-			<li class="my-1 ml-6">
+			<!-- <li class="my-1 ml-6">
 				NZ First has been excluded from the comparisons as they have not provided a definitive tax
 				bracket policy other than to <a
 					class="italic font-bold hover:text-blue-700 hover:underline"
 					href="https://www.nzfirst.nz/2023_commitments"
 					target="_blank">ensure tax income brackets are adjusted to inflation</a
 				>.
-			</li>
+			</li> -->
 		</ol>
 		<div class="mt-8 flex justify-end">
 			<a

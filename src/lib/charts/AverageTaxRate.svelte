@@ -10,7 +10,8 @@
 		lmito,
 		bracketsGreens,
 		bracketsTPM,
-		bracketsTOP
+		bracketsTOP,
+		bracketsNZFirst
 	} from '../../utils/generateData';
 
 	export let labels;
@@ -36,6 +37,7 @@
 			),
 		new Array(max - min).fill(0).map((_, i) => calculateTaxPercent(i * 1000, bracketsGreens)),
 		new Array(max - min).fill(0).map((_, i) => calculateTaxPercent(i * 1000, bracketsTPM)),
+		new Array(max - min).fill(0).map((_, i) => calculateTaxPercent(i * 1000, bracketsNZFirst)),
 		new Array(max - min).fill(0).map((_, i) => calculateTaxPercent(i * 1000, bracketsTOP))
 	];
 
@@ -96,10 +98,17 @@
 					fill: false
 				},
 				{
+					label: 'NZ First',
+					borderColor: '#000000',
+					backgroundColor: '#000000',
+					data: precalc[5],
+					fill: false
+				},
+				{
 					label: 'TOP',
 					borderColor: '#26a7cb',
 					backgroundColor: '#26a7cb',
-					data: precalc[5],
+					data: precalc[6],
 					fill: false
 				}
 			]

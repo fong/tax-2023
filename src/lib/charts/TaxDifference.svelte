@@ -9,6 +9,7 @@
 		lmito,
 		bracketsGreens,
 		bracketsTPM,
+		bracketsNZFirst,
 		bracketsTOP
 	} from '../../utils/generateData';
 	import { page } from '$app/stores';
@@ -33,6 +34,7 @@
 			.map((_, i) => +(calculateTax(i * 1000, bracketsAct) - lmito(i * 1000) || 0).toFixed(6)),
 		new Array(max - min).fill(0).map((_, i) => calculateTax(i * 1000, bracketsGreens)),
 		new Array(max - min).fill(0).map((_, i) => calculateTax(i * 1000, bracketsTPM)),
+		new Array(max - min).fill(0).map((_, i) => calculateTax(i * 1000, bracketsNZFirst)),
 		new Array(max - min).fill(0).map((_, i) => calculateTax(i * 1000, bracketsTOP))
 	];
 
@@ -127,10 +129,17 @@
 					fill: false
 				},
 				{
+					label: 'NZ First',
+					borderColor: '#000000',
+					backgroundColor: '#000000',
+					data: transformedDatasets[5],
+					fill: false
+				},
+				{
 					label: 'TOP',
 					borderColor: '#26a7cb',
 					backgroundColor: '#26a7cb',
-					data: transformedDatasets[5],
+					data: transformedDatasets[6],
 					fill: false
 				}
 			]
@@ -300,7 +309,9 @@
 		<option value={2} class="hover:bg-black/20 checked:bg-black checked:text-white">ACT</option>
 		<option value={3} class="hover:bg-black/20 checked:bg-black checked:text-white">Green</option>
 		<option value={4} class="hover:bg-black/20 checked:bg-black checked:text-white">TPM</option>
-		<option value={5} class="hover:bg-black/20 checked:bg-black checked:text-white">TOP</option>
+		<option value={5} class="hover:bg-black/20 checked:bg-black checked:text-white">NZ First</option
+		>
+		<option value={6} class="hover:bg-black/20 checked:bg-black checked:text-white">TOP</option>
 	</select>
 </div>
 <div class="relative w-auto h-[384px] md:h-[520px]">

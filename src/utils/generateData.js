@@ -48,6 +48,14 @@ export const bracketsTPM = [
 	[300000, income_max, 0.48]
 ];
 
+export const bracketsNZFirst = [
+	[0, 14000, 0],
+	[14000, 48000, 0.175],
+	[48000, 70000, 0.3],
+	[70000, 180000, 0.33],
+	[180000, income_max, 0.39]
+];
+
 export const calculateTax = (income, brackets) => {
 	let totalTaxes = 0;
 	for (const interval of brackets) {
